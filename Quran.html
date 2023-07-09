@@ -1,0 +1,101 @@
+<html>
+<style>
+    * {
+        direction: rtl;
+        margin: auto;
+        width: 70%;
+        /* border: 3px solid #73AD21; */
+        padding: 10px;
+    }
+
+    table,
+    td,
+    th {
+        border: none;
+        width: 100%;
+        text-align: center
+    }
+
+    .stylee table,
+    .stylee td,
+    .stylee th {
+        border: 1px solid;
+    }
+
+    .stylee table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center
+    }
+
+    button {
+        width: 70%;
+        text-align: center
+    }
+</style>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <label for="input">ادخل البداية: </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input value="" id="input">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="clickk()">Submit</button>
+            </td>
+        </tr>
+    </table>
+    <div id="tablee" class="stylee"></div>
+</body>
+<script>
+
+    function clickk() {
+
+        console.log("hjkl;")
+        var s = document.getElementById("input")
+        console.log(s.value)
+        names = ["الحاجة هناء", "الحاجة عزيزة", "الحاجة عواطف", "الحاجة كريمة", "الحاجة مرفت", "الحاجة جميلة", "الحاجة امل", "الحاجة سلمي", "الحاجة سهير", "الحاجة حنان", "الحاجة هند", "الحاجة سحر", "الحاجة نادية", "الحاجة مديحة", "الحاجة ايمان"]
+        var HTMLSTR
+        x = document.getElementById("tablee")
+        HTMLSTR = "<table><tr><th>الاسم</th><th>الجزء</th><th>الجزء</th></tr>"
+        var i, value
+        value = parseInt(s.value)
+        if (isNaN(value) || value > 30 || value < 1)
+            HTMLSTR = "ادخل رقم صحيح بين 1 و 30"
+        else {
+            for (i = 0; i < 15; i++) {
+                HTMLSTR += "<tr><td>" + names[i] + "</td><td>" + value + "</td><td>"
+                value += 1
+                if (value == 31)
+                    value = 1
+                HTMLSTR += (value) + "</td></tr>"
+                value += 1
+                if (value == 31)
+                    value = 1
+                console.log(value)
+            }
+
+            let today = new Date();
+            let daysUntilThursday = (12 - today.getDay()) % 7;
+            if (daysUntilThursday === 0 && today.getHours() >= 12) {
+                daysUntilThursday = 7;
+            }
+            let nextThursday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilThursday);
+            console.log(nextThursday.toISOString().slice(0, 10));
+            deadline = nextThursday.toISOString().slice(0, 10)
+            HTMLSTR += "<tr><td>تاريخ التسليم" + '</td>' + "<td colspan='2'>" + deadline + "</td>"
+            HTMLSTR += '</table>'
+        }
+        x.innerHTML = HTMLSTR
+    }
+
+</script>
+
+</html>
